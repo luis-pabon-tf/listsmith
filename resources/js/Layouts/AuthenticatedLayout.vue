@@ -30,6 +30,9 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Note Browser
+                                </NavLink>
+                                <NavLink :href="route('editor')" :active="route().current('editor')">
                                     Note Editor
                                 </NavLink>
                             </div>

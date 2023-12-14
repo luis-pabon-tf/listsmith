@@ -16,7 +16,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return Note::paginate(10);
+        return Note::with('category')->where([
+            'user_id' => 1//$request->input('user_id')
+        ])->get();//->paginate(10);
     }
 
     /**
@@ -63,9 +65,7 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        return view('user.profile', [
-            'user' => Note::findOrFail($id),
-        ]);
+        return Note::with('category')->findOrFail($id);
     }
 
     /**
@@ -86,6 +86,6 @@ class NoteController extends Controller
      */
     public function destroy(string $id)
     {
-        return Note::findOrFail($id)::safeDelete();
+        return Note::findOrFail($id)::delete();
     }
 }
